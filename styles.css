@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#map-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 0;
+}
+
+
+.leaflet-control-dropdown {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+
+/* Custom styles for button spacing on small screens if needed, though Bootstrap should handle it */
+.navbar-nav .nav-item .btn {
+  margin-bottom: 0.5rem;
+  /* Add some space below buttons when they stack */
+  width: 100%;
+  /* Make buttons full width when stacked */
+}
+
+.navbar-nav .nav-item:last-child .btn {
+  margin-bottom: 0;
+  /* No margin-bottom for the last button in the stacked list */
+}
+
+/* Specific fix for toolbar-content if it's not a button */
+#toolbar-content-container {
+  width: 100%;
+  /* Ensure it takes full width when stacked */
+  padding-left: var(--bs-navbar-nav-link-padding-x);
+  /* Align with nav links */
+  padding-right: var(--bs-navbar-nav-link-padding-x);
+  padding-top: 0.5rem;
+  /* Space above */
+  padding-bottom: 0.5rem;
+  /* Space below */
+  box-sizing: border-box;
+  /* Include padding in width */
+}
+
+/* Adjust margins for desktop view to prevent extra gaps */
+@media (min-width: 992px) {
+
+  /* Adjust to your navbar-expand breakpoint */
+  .navbar-nav .nav-item .btn {
+    margin-bottom: 0;
+    /* Remove vertical margin */
+    width: auto;
+    /* Buttons go back to auto width */
+    margin-right: 0.5rem;
+    /* Add horizontal spacing between buttons */
+  }
+
+  .navbar-nav .nav-item:last-child .btn,
+  .navbar-nav .nav-item:last-child #toolbar-content-container {
+    margin-right: 0;
+  }
+
+  #toolbar-content-container {
+    width: auto;
+    /* Auto width on desktop */
+    padding: 0;
+    /* No extra padding on desktop */
+    margin-left: 0.5rem;
+    /* Space from previous button */
+  }
+}
