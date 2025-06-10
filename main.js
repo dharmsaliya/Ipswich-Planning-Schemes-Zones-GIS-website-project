@@ -250,65 +250,6 @@ legend.onAdd = function () {
 legend.addTo(map);
 
 /* ======================= *
- *     ZONE DROPDOWN        *
- * ======================= */
-
-var dropdownControl = L.control({ position: 'topleft' });
-
-dropdownControl.onAdd = function () {
-    var div = L.DomUtil.create('div', 'leaflet-control-dropdown');
-    div.innerHTML = `
-        <label for=location-select">Choose zones: </label>
-        <select id="location-select">
-            <option value="">--Please choose an option--</option>
-            ${zoneNames.map(name => `<option value="${name}">${name}</option>`).join('')}
-        </select>
-    `;
-    L.DomEvent.disableClickPropagation(div);
-    return div;
-};
-
-dropdownControl.addTo(map);
-
-document.addEventListener('DOMContentLoaded', function () {
-    const select = document.getElementById('location-select');
-    if (select) {
-        select.addEventListener('change', function () {
-            const selected = this.value;
-            geoJsonLayer.clearLayers();
-            if (!selected) {
-                geoJsonLayer.addData(data);
-            } else {
-                const filtered = {
-                    ...data,
-                    features: data.features.filter(f => f.properties.NAME === selected)
-                };
-                geoJsonLayer.addData(filtered);
-            }
-        });
-    }
-});
-
-/* ======================= *
- *     SEARCH TOOLBAR       *
- * ======================= */
-
-var searchControl = L.control({ position: 'topright' });
-
-searchControl.onAdd = function () {
-    var div = L.DomUtil.create('div', 'leaflet-control-search');
-    div.innerHTML = `
-        <input type="text" id="search-input" placeholder="Search by code" style="width:120px; margin-bottom:4px;">
-        <button id="search-button" style="margin-left:4px;">Search</button>
-        <div id="search-message" style="color:red; font-size:12px; margin-top:2px;"></div>
-    `;
-    L.DomEvent.disableClickPropagation(div);
-    return div;
-};
-
-searchControl.addTo(map);
-
-/* ======================= *
  *     TOOLBAR BUTTONS      *
  * ======================= */
 
